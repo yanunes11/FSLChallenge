@@ -10,13 +10,19 @@ public with sharing class TestRest {
         Map<String, Object> result = (Map<String, Object>)JSON.deserializeUntyped(response.getBody());
         Map<String, Object> data = (Map<String, Object>)result.get('data');
         List<Object> children = (List<Object>) data.get('children');
-        
-        Map<String, Object> child = (Map<String, Object>) children[0];
 
-        Map<String, Object> childData = (Map<String, Object>) child.get('data');
-        System.debug('title: '+childData.get('title'));
-        System.debug('author_fullname: '+childData.get('author_fullname'));
-        System.debug('thumbnail: '+childData.get('thumbnail'));
-        System.debug('r/aww: https://www.reddit.com'+childData.get('permalink'));
+        List<Map<String, Object>> listReditt = new List<Map<String, Object>>();
+
+        for (Object c : children) {
+            Map<String, Object> child = (Map<String, Object>) c;
+            Map<String, Object> childData = (Map<String, Object>) child.get('data');
+            listReditt.add(childData);
+        }
+        
+        System.debug('title: '+listReditt[0].get('title'));
+        System.debug('author_fullname: '+listReditt[0].get('author_fullname'));
+        System.debug('thumbnail: '+listReditt[0].get('thumbnail'));
+        System.debug('r/aww: https://www.reddit.com'+listReditt[0].get('permalink'));
+
     }
 }
