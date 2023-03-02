@@ -9,10 +9,14 @@ public with sharing class TestRest {
         HttpResponse response = httpProtocol.send(request);
         Map<String, Object> result = (Map<String, Object>)JSON.deserializeUntyped(response.getBody());
         Map<String, Object> data = (Map<String, Object>)result.get('data');
-        List<Object> childrenData = (List<Object>) data.get('children');
-        Map<String, Object> child = (Map<String, Object>) childrenData[0];
+        List<Object> children = (List<Object>) data.get('children');
+        
+        Map<String, Object> child = (Map<String, Object>) children[0];
 
         Map<String, Object> childData = (Map<String, Object>) child.get('data');
-        System.debug('Child Object: '+childData.get('selftext'));
+        System.debug('title: '+childData.get('title'));
+        System.debug('author_fullname: '+childData.get('author_fullname'));
+        System.debug('thumbnail: '+childData.get('thumbnail'));
+        System.debug('r/aww: https://www.reddit.com'+childData.get('permalink'));
     }
 }
