@@ -13,7 +13,12 @@ public with sharing class RedditServices {
             }
             rd.Title__c = titleMaxSize;
             rd.Thumbnail__c = (String)listReditt[i].get('thumbnail');
-            rd.SelfText__c = (String)listReditt[i].get('selftext');
+
+            String selfTextMaxSize = (String)listReditt[i].get('selftext');
+            if(selfTextMaxSize.length() > 1999 ){
+                selfTextMaxSize = selfTextMaxSize.substring(0, 1999);
+            }
+            rd.SelfText__c = selfTextMaxSize;
 
             listRedittToInsert.add(rd);
         }
