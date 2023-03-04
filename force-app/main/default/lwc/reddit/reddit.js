@@ -14,12 +14,9 @@ export default class Reddit extends LightningElement {
 
 
     connectedCallback() {
-        console.log('YNASC Invoked');
-        // const data = redditQuery({ numberOfRecords: 40 });
-        // this.data = data;
         const data1 = redditQuery({ numberOfRecords: 40 })
         .then(response => {
-            console.log('YNASC: '+JSON.stringify(response));
+            console.log('YNASC 2: '+JSON.stringify(response[0].Title__c));
         });
     }
 

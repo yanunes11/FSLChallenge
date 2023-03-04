@@ -7,9 +7,14 @@ public with sharing class RedditQueries {
             FROM Reddit__c
             ORDER BY CreatedDate DESC LIMIT :numberOfRecords
         ];
+        //YNASC delete - START
+        Integer totalNumberReddit = 0;
+        System.debug('totalNumberReddit: '+totalNumberReddit);
         for (Reddit__c rd : redditList) {
             System.debug('rd: '+rd.CreatedDate);
+            totalNumberReddit += 1;
         }
+        //YNASC delete - END
         return redditList;
     }
 }
