@@ -1,12 +1,14 @@
 <template>
-    <lightning-card  title="Reddit">
+    <lightning-card  title="Reddit">YAN
         <div style="height: 300px;">
             <lightning-datatable
                     key-field="id"
                     data={data}
-                    columns={columns}>
+                    show-row-number-column
+                    hide-checkbox-column
+                    columns={columns}
+                    >
             </lightning-datatable>
         </div>
-        <p slot="footer">Card Footer</p>
     </lightning-card>
 </template>
