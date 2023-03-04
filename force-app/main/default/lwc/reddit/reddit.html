@@ -1,0 +1,12 @@
+<template>
+    <lightning-card  title="Reddit">
+        <div style="height: 300px;">
+            <lightning-datatable
+                    key-field="id"
+                    data={data}
+                    columns={columns}>
+            </lightning-datatable>
+        </div>
+        <p slot="footer">Card Footer</p>
+    </lightning-card>
+</template>
