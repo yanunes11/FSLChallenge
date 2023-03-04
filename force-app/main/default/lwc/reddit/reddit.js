@@ -2,10 +2,10 @@ import { LightningElement } from 'lwc';
 import redditQuery from '@salesforce/apex/RedditQueries.retrieveReddit';
 
 const columns = [
-    { label: 'Title', fieldName: 'title' },
-    { label: 'Full Name', fieldName: 'fullName'},
-    { label: 'Thumbnail ', fieldName: 'thumbnail', type: 'url' },
-    { label: 'SelfText', fieldName: 'selfText'},
+    { label: 'Title', fieldName: 'Title__c', type: 'text'},
+    { label: 'Full Name', fieldName: 'Full_Name__c', type: 'text'},
+    { label: 'Thumbnail ', fieldName: 'SelfText__c', type: 'url' },
+    { label: 'SelfText', fieldName: 'Thumbnail__c', type: 'text'},
 ];
 
 export default class Reddit extends LightningElement {
@@ -14,9 +14,9 @@ export default class Reddit extends LightningElement {
 
 
     connectedCallback() {
-        const data1 = redditQuery({ numberOfRecords: 40 })
+        const data = redditQuery({ numberOfRecords: 40 })
         .then(response => {
-            console.log('YNASC 2: '+JSON.stringify(response[0].Title__c));
+            this.data = response;
         });
     }
 
