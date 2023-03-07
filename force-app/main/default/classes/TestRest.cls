@@ -3,7 +3,7 @@ public with sharing class TestRest {
     public static void getRedittContent() {
         Http httpProtocol = new Http();
         HttpRequest request = new HttpRequest();
-        String endpoint = 'https://www.reddit.com/new.json';
+        String endpoint = 'https://www.reddit.com/r/aww.json';
         request.setEndPoint(endpoint);
         request.setMethod('GET');
         HttpResponse response = httpProtocol.send(request);

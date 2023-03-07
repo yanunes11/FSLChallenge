@@ -4,25 +4,23 @@ public with sharing class RedditServices {
         
         List<Reddit__c> listRedittToInsert = new List<Reddit__c>();
         for (Integer i = 0; i < listReditt.size(); i++) {
-            System.debug('YNASC - listReditt['+ i +']: '+listReditt[i]);
             Reddit__c rd = new Reddit__c();
             rd.Full_Name__c = (String)listReditt[i].get('author_fullname');
-            String titleMaxSize = (String)listReditt[i].get('title');
-            if(titleMaxSize.length() > 254 ){
-                titleMaxSize = titleMaxSize.substring(0, 254);
-            }
-            rd.Title__c = titleMaxSize;
+            rd.Title__c = maxSize((String)listReditt[i].get('title'), 254);
             rd.Thumbnail__c = (String)listReditt[i].get('thumbnail');
-
-            String selfTextMaxSize = (String)listReditt[i].get('selftext');
-            if(selfTextMaxSize.length() > 1999 ){
-                selfTextMaxSize = selfTextMaxSize.substring(0, 1999);
-            }
-            rd.SelfText__c = selfTextMaxSize;
+            rd.SelfText__c = maxSize((String)listReditt[i].get('selftext'), 1999);
 
             listRedittToInsert.add(rd);
         }
-        insert listRedittToInsert;
+        Database.insert(listRedittToInsert, false);
         return listRedittToInsert;
+    }
+
+    //Avoid errors if exceed character quantity
+    public static String maxSize(String str, Integer strLength) {
+        if(str.length() > strLength ){
+            str = str.substring(0, strLength);
+        }
+        return str;
     }
 }
